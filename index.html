@@ -8,12 +8,10 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Arial, sans-serif; background: #0d0d0d; color: #fff; min-height: 100vh; }
 
-  /* HEADER */
   .header { background: #111; padding: 14px 16px 10px; border-bottom: 3px solid #e63946; }
   .header h1 { font-size: 1.05rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
   .header p { font-size: 0.7rem; color: #777; margin-top: 2px; }
 
-  /* TABS */
   .tabs { display: flex; overflow-x: auto; background: #161616; border-bottom: 2px solid #2a2a2a; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
   .tab { flex: 0 0 auto; padding: 10px 16px; font-size: 0.8rem; font-weight: bold; color: #555; cursor: pointer; border: none; background: none; border-bottom: 3px solid transparent; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; white-space: nowrap; }
@@ -22,7 +20,6 @@
   .badge.red { background: #e63946; color: #fff; }
   .badge.orange { background: #f4a261; color: #111; }
 
-  /* SECTION HEADER */
   .sec-header { padding: 12px 16px; background: #161616; border-bottom: 1px solid #2a2a2a; display: flex; align-items: center; justify-content: space-between; }
   .sec-header h2 { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
   .sec-tag { font-size: 0.6rem; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
@@ -30,198 +27,81 @@
   .sec-tag.orange { background: #f4a261; color: #111; }
   .sec-tag.gray { background: #333; color: #aaa; }
 
-  /* COOLER BODY */
   .cooler-wrap { padding: 12px 12px 0; }
 
   .cooler-box {
     background: linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%);
-    border: 2px solid #1e3a5f;
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .cooler-frost {
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, transparent, rgba(126,200,227,0.4), transparent);
+    border: 2px solid #1e3a5f; border-radius: 8px; overflow: hidden;
   }
 
   .cooler-label {
     font-size: 0.6rem; color: #7ec8e3; letter-spacing: 2px;
     text-transform: uppercase; padding: 6px 12px;
     border-bottom: 1px solid #1e3a5f;
-    display: flex; align-items: center; gap: 6px;
   }
 
-  /* SHELF */
   .shelf { border-bottom: 2px solid #1e3a5f; padding: 10px 10px 12px; }
   .shelf:last-child { border-bottom: none; }
 
-  .shelf-meta {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 8px;
-  }
+  .shelf-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .shelf-name { font-size: 0.62rem; font-weight: bold; color: #7ec8e3; text-transform: uppercase; letter-spacing: 1px; }
+  .shelf-dir { font-size: 0.55rem; color: #3a5a7a; letter-spacing: 1px; }
 
-  .shelf-name {
-    font-size: 0.62rem; font-weight: bold; color: #7ec8e3;
-    text-transform: uppercase; letter-spacing: 1px;
-  }
-
-  .shelf-direction {
-    font-size: 0.55rem; color: #555;
-    display: flex; align-items: center; gap: 4px;
-  }
-
-  .shelf-direction::before { content: '← LEFT'; }
-  .shelf-direction::after { content: 'RIGHT →'; }
-  .shelf-direction span { color: #333; }
-
-  /* PRODUCT GRID */
-  .products {
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-  }
+  .products { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
   .products::-webkit-scrollbar { display: none; }
 
-  /* PRODUCT CARD */
-  .product-card {
-    flex: 0 0 auto;
-    width: 72px;
-    cursor: pointer;
-    text-align: center;
-    transition: transform 0.15s;
-    position: relative;
-  }
+  .product-card { flex: 0 0 auto; width: 68px; cursor: pointer; text-align: center; transition: transform 0.15s; }
+  .product-card:active { transform: scale(0.93); }
 
-  .product-card:active { transform: scale(0.95); }
+  .slot-num-top { font-size: 0.52rem; color: #3a5a7a; margin-bottom: 3px; font-weight: bold; }
 
-  .slot-num-top {
-    font-size: 0.55rem; color: #444; margin-bottom: 3px;
-    font-weight: bold;
-  }
-
-  .can-wrap {
-    width: 72px; height: 90px;
-    border-radius: 6px;
-    overflow: hidden;
+  .can-outer {
+    width: 68px; height: 88px; border-radius: 6px;
     border: 2px solid #1e3a5f;
-    background: #0a1628;
     display: flex; align-items: center; justify-content: center;
-    position: relative;
     transition: border-color 0.15s;
+    background: #0a1628;
   }
+  .product-card:hover .can-outer { border-color: #e63946; }
 
-  .product-card:hover .can-wrap,
-  .product-card:focus .can-wrap { border-color: #e63946; }
+  .can-outer.empty-slot { border: 2px dashed #1e2a3a; background: #090e18; }
 
-  .can-wrap img {
-    width: 100%; height: 100%;
-    object-fit: contain;
-    padding: 4px;
-  }
+  .product-label { font-size: 0.56rem; color: #aaa; margin-top: 4px; line-height: 1.2; font-weight: bold; }
+  .size-label { font-size: 0.5rem; color: #555; margin-top: 1px; }
 
-  .can-wrap.empty-slot {
-    border: 2px dashed #2a2a2a;
-    background: #0a0a0a;
-  }
-
-  .empty-icon { font-size: 1.2rem; color: #2a2a2a; }
-
-  .product-label {
-    font-size: 0.58rem; color: #aaa; margin-top: 4px;
-    line-height: 1.2; font-weight: bold;
-    max-width: 72px; word-break: break-word;
-  }
-
-  .size-label {
-    font-size: 0.52rem; color: #555; margin-top: 1px;
-  }
-
-  .type-dot {
-    position: absolute; bottom: 4px; right: 4px;
-    width: 7px; height: 7px; border-radius: 50%;
-  }
-
-  /* SHELF RAIL */
-  .shelf-rail {
-    height: 4px;
-    background: linear-gradient(90deg, #1e3a5f, #2a5080, #1e3a5f);
-    border-radius: 2px;
-    margin-top: 8px;
-  }
+  .shelf-rail { height: 4px; background: linear-gradient(90deg, #1e3a5f, #2a5080, #1e3a5f); border-radius: 2px; margin-top: 8px; }
 
   /* MODAL */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.85); z-index: 100;
-    align-items: center; justify-content: center;
-    padding: 20px;
-  }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: #1a1a2e; border-radius: 12px;
-    border: 2px solid #e63946;
-    width: 100%; max-width: 320px;
-    overflow: hidden; animation: popIn 0.2s ease;
-  }
-
-  @keyframes popIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to   { transform: scale(1);   opacity: 1; }
-  }
-
-  .modal-img {
-    width: 100%; height: 180px;
-    background: #0d1f3c;
-    display: flex; align-items: center; justify-content: center;
-    border-bottom: 1px solid #333;
-  }
-
-  .modal-img img { max-height: 160px; max-width: 90%; object-fit: contain; }
-
+  .modal { background: #1a1a2e; border-radius: 12px; border: 2px solid #e63946; width: 100%; max-width: 300px; overflow: hidden; animation: popIn 0.18s ease; }
+  @keyframes popIn { from { transform: scale(0.88); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modal-can-area { width: 100%; height: 160px; background: #0d1f3c; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #333; }
   .modal-body { padding: 16px; }
   .modal-name { font-size: 1.1rem; font-weight: 900; margin-bottom: 4px; }
-  .modal-size { font-size: 0.8rem; color: #aaa; margin-bottom: 8px; }
-  .modal-shelf { font-size: 0.75rem; color: #7ec8e3; margin-bottom: 4px; }
-  .modal-slot  { font-size: 0.75rem; color: #888; margin-bottom: 12px; }
+  .modal-size { font-size: 0.8rem; color: #aaa; margin-bottom: 6px; }
+  .modal-info { font-size: 0.72rem; color: #7ec8e3; margin-bottom: 3px; }
+  .modal-type { display: inline-block; font-size: 0.62rem; padding: 3px 10px; border-radius: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin: 8px 0 14px; }
+  .modal-close { width: 100%; padding: 12px; background: #e63946; color: #fff; border: none; border-radius: 6px; font-size: 0.9rem; font-weight: bold; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; }
 
-  .modal-type {
-    display: inline-block; font-size: 0.65rem; padding: 3px 10px;
-    border-radius: 20px; font-weight: bold; text-transform: uppercase;
-    letter-spacing: 1px; margin-bottom: 16px;
-  }
-
-  .modal-close {
-    width: 100%; padding: 12px; background: #e63946; color: #fff;
-    border: none; border-radius: 6px; font-size: 0.9rem; font-weight: bold;
-    cursor: pointer; letter-spacing: 1px; text-transform: uppercase;
-  }
-
-  /* EMPTY SECTION */
   .empty-state { text-align: center; padding: 48px 24px; color: #333; }
   .empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; }
   .empty-state p { font-size: 0.85rem; line-height: 1.7; color: #444; }
-
-  /* BOTTOM PAD */
-  .bottom-pad { height: 24px; }
+  .bottom-pad { height: 28px; }
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1>🍺 Odell's Cooler Map</h1>
-  <p>Tap any product to see details · Echo, Louisiana</p>
+  <p>Tap any can to see details · Echo, Louisiana</p>
 </div>
 
 <div class="tabs" id="tabs"></div>
 
 <div class="sec-header">
   <h2 id="section-title">Section 1</h2>
-  <span class="sec-tag" id="section-tag">Singles</span>
+  <span class="sec-tag red" id="section-tag">Singles</span>
 </div>
 
 <div class="cooler-wrap" id="cooler-wrap"></div>
@@ -230,196 +110,240 @@
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal">
-    <div class="modal-img"><img id="modal-img" src="" alt=""></div>
+    <div class="modal-can-area" id="modal-can-area"></div>
     <div class="modal-body">
       <div class="modal-name" id="modal-name"></div>
       <div class="modal-size" id="modal-size"></div>
-      <div class="modal-shelf" id="modal-shelf"></div>
-      <div class="modal-slot"  id="modal-slot"></div>
-      <div class="modal-type"  id="modal-type"></div>
-      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">Close</button>
+      <div class="modal-info" id="modal-shelf"></div>
+      <div class="modal-info" id="modal-slot"></div>
+      <div class="modal-type" id="modal-type"></div>
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕ Close</button>
     </div>
   </div>
 </div>
 
 <script>
-const TYPE_COLOR = {
-  single:  '#e63946',
-  beer:    '#f4a261',
-  seltzer: '#7ec8e3',
-  liquor:  '#9b5de5',
-  empty:   '#2a2a2a',
-};
+// ── CAN DESIGNS ──────────────────────────────────────────────────────────────
+// Each brand gets an SVG can drawn in its real colors
+function drawCan(brand, size) {
+  const designs = {
+    'Miller Lite': {
+      top: '#c8d8e8', body1: '#1a3a6e', body2: '#2255a0',
+      stripe: '#c8d8e8', label: '#fff',
+      text: 'MILLER\nLITE', textColor: '#fff', accent: '#c8d8e8'
+    },
+    'Coors Light': {
+      top: '#c0d0e0', body1: '#1a4a8a', body2: '#2060b0',
+      stripe: '#silver', label: '#fff',
+      text: 'COORS\nLIGHT', textColor: '#fff', accent: '#a8c8e8'
+    },
+    'Bud Light': {
+      top: '#aabbcc', body1: '#1a3a70', body2: '#1e4f9e',
+      stripe: '#c8d8f0', label: '#fff',
+      text: 'BUD\nLIGHT', textColor: '#fff', accent: '#d4e4f8'
+    },
+    'Michelob Ultra': {
+      top: '#b0c8e0', body1: '#0a2244', body2: '#1a3a6e',
+      stripe: '#7ec8e3', label: '#7ec8e3',
+      text: 'MICHELOB\nULTRA', textColor: '#7ec8e3', accent: '#7ec8e3'
+    },
+    'BuzzBallz': {
+      top: '#ff8800', body1: '#cc4400', body2: '#ff6600',
+      stripe: '#ffcc00', label: '#fff',
+      text: 'BUZZ\nBALLZ', textColor: '#fff', accent: '#ffcc00'
+    },
+  };
 
-const TYPE_LABEL = {
-  single:  'Single Can',
-  beer:    'Beer (Pack)',
-  seltzer: 'Hard Seltzer',
-  liquor:  'Liquor / Wine',
-  empty:   'Empty Slot',
-};
+  const d = designs[brand] || {
+    top: '#555', body1: '#333', body2: '#444',
+    stripe: '#666', label: '#aaa',
+    text: brand.toUpperCase(), textColor: '#fff', accent: '#888'
+  };
 
-// Product image URLs
-const IMAGES = {
-  'Miller Lite 16oz':    'https://www.kroger.com/product/images/large/front/0007020000107.png',
-  'Miller Lite 24oz':    'https://www.kroger.com/product/images/large/front/0007020000456.png',
-  'Coors Light 24oz':    'https://www.kroger.com/product/images/large/front/0003410035200.png',
-  'Bud Light 16oz':      'https://www.kroger.com/product/images/large/front/0001800001718.png',
-  'Michelob Ultra 16oz': 'https://www.kroger.com/product/images/large/front/0001800012249.png',
-  'BuzzBallz':           'https://www.buzzballz.com/wp-content/uploads/2021/03/ChilliMango.png',
-};
+  const lines = d.text.split('\n');
 
-const FALLBACK = 'https://via.placeholder.com/120x160/0d1f3c/7ec8e3?text=🍺';
+  return `<svg width="44" height="72" viewBox="0 0 44 72" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg${brand.replace(/\s/g,'')}" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="${d.body1}"/>
+        <stop offset="50%" stop-color="${d.body2}"/>
+        <stop offset="100%" stop-color="${d.body1}"/>
+      </linearGradient>
+      <clipPath id="canClip${brand.replace(/\s/g,'')}">
+        <rect x="4" y="8" width="36" height="56" rx="6"/>
+      </clipPath>
+    </defs>
+
+    <!-- Can body -->
+    <rect x="4" y="8" width="36" height="56" rx="6" fill="url(#bg${brand.replace(/\s/g,'')})"/>
+
+    <!-- Shine -->
+    <rect x="4" y="8" width="36" height="56" rx="6"
+      fill="none" clip-path="url(#canClip${brand.replace(/\s/g,'')})"/>
+    <rect x="6" y="10" width="8" height="52" rx="3"
+      fill="rgba(255,255,255,0.08)" clip-path="url(#canClip${brand.replace(/\s/g,'')})"/>
+
+    <!-- Accent stripe -->
+    <rect x="4" y="28" width="36" height="5" fill="${d.accent}" opacity="0.25"
+      clip-path="url(#canClip${brand.replace(/\s/g,'')})"/>
+
+    <!-- Brand text -->
+    ${lines.map((line, i) => `
+    <text x="22" y="${lines.length === 1 ? 42 : 36 + i*12}"
+      font-family="Arial Black,Arial" font-weight="900"
+      font-size="${line.length > 6 ? '6' : '7'}"
+      fill="${d.textColor}" text-anchor="middle"
+      letter-spacing="0.5">${line}</text>`).join('')}
+
+    <!-- Size badge -->
+    <rect x="8" y="52" width="28" height="8" rx="2" fill="rgba(0,0,0,0.3)"/>
+    <text x="22" y="58" font-family="Arial" font-size="5.5" fill="${d.accent}"
+      text-anchor="middle" font-weight="bold">${size || ''}</text>
+
+    <!-- Top cap -->
+    <ellipse cx="22" cy="9" rx="18" ry="4" fill="${d.top}"/>
+    <ellipse cx="22" cy="8" rx="10" ry="2.5" fill="${d.top}" opacity="0.6"/>
+    <circle cx="22" cy="7" r="3" fill="#888"/>
+    <rect x="18" y="5.5" width="8" height="2" rx="1" fill="#999"/>
+
+    <!-- Bottom -->
+    <ellipse cx="22" cy="63" rx="18" ry="3.5" fill="${d.body1}" opacity="0.8"/>
+  </svg>`;
+}
+
+function drawEmptyCan() {
+  return `<svg width="44" height="72" viewBox="0 0 44 72" xmlns="http://www.w3.org/2000/svg">
+    <rect x="4" y="8" width="36" height="56" rx="6" fill="none" stroke="#1e2a3a" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="22" y="40" font-family="Arial" font-size="14" fill="#1e2a3a" text-anchor="middle">—</text>
+  </svg>`;
+}
+
+// ── DATA ─────────────────────────────────────────────────────────────────────
+const TYPE_COLOR = { single:'#e63946', beer:'#f4a261', seltzer:'#7ec8e3', liquor:'#9b5de5', empty:'#1e2a3a' };
+const TYPE_LABEL = { single:'Single Can', beer:'Beer Pack', seltzer:'Hard Seltzer', liquor:'Liquor / Wine', empty:'Empty Slot' };
 
 const sections = {
   1: {
-    title: "Section 1", tag: "Singles", tagColor: "red",
-    shelves: [
-      {
-        name: "Top Shelf", slots: 7,
-        products: [
-          { name: "Miller Lite",    size: "16 oz", type: "single", imgKey: "Miller Lite 16oz" },
-          { name: "Miller Lite",    size: "24 oz", type: "single", imgKey: "Miller Lite 24oz" },
-          { name: "Coors Light",    size: "24 oz", type: "single", imgKey: "Coors Light 24oz" },
-          { name: "Coors Light",    size: "24 oz", type: "single", imgKey: "Coors Light 24oz" },
-          { name: "Empty",          size: "—",     type: "empty",  imgKey: null },
-          { name: "Bud Light",      size: "16 oz", type: "single", imgKey: "Bud Light 16oz" },
-          { name: "Michelob Ultra", size: "16 oz", type: "single", imgKey: "Michelob Ultra 16oz" },
-        ]
-      },
-      { name: "Shelf 2", slots: 7,  products: [] },
-      { name: "Shelf 3", slots: 6,  products: [] },
-      { name: "Shelf 4", slots: 6,  products: [] },
-      {
-        name: "Bottom Shelf", slots: null,
-        products: [
-          { name: "BuzzBallz", size: "Assorted", type: "single", imgKey: "BuzzBallz" },
-        ]
-      },
+    title:"Section 1", tag:"Singles", tagColor:"red",
+    shelves:[
+      { name:"Top Shelf", slots:7, products:[
+        { name:"Miller Lite",    size:"16 oz", type:"single" },
+        { name:"Miller Lite",    size:"24 oz", type:"single" },
+        { name:"Coors Light",    size:"24 oz", type:"single" },
+        { name:"Coors Light",    size:"24 oz", type:"single" },
+        { name:"Empty",          size:"—",     type:"empty"  },
+        { name:"Bud Light",      size:"16 oz", type:"single" },
+        { name:"Michelob Ultra", size:"16 oz", type:"single" },
+      ]},
+      { name:"Shelf 2", slots:7, products:[] },
+      { name:"Shelf 3", slots:6, products:[] },
+      { name:"Shelf 4", slots:6, products:[] },
+      { name:"Bottom Shelf", slots:null, products:[
+        { name:"BuzzBallz", size:"Asst.", type:"single" },
+      ]},
     ]
   },
-  2:  { title: "Section 2",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
-  3:  { title: "Section 3",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
-  4:  { title: "Section 4",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
-  5:  { title: "Section 5",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
-  6:  { title: "Section 6",  tag: "Singles",        tagColor: "red",    shelves: [] },
-  7:  { title: "Section 7",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
-  8:  { title: "Section 8",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
-  9:  { title: "Section 9",  tag: "Singles + Mixed",tagColor: "orange", shelves: [] },
-  10: { title: "Section 10", tag: "Mixed",          tagColor: "orange", shelves: [] },
+  2:  {title:"Section 2",  tag:"Coming Soon",     tagColor:"gray",   shelves:[]},
+  3:  {title:"Section 3",  tag:"Coming Soon",     tagColor:"gray",   shelves:[]},
+  4:  {title:"Section 4",  tag:"Coming Soon",     tagColor:"gray",   shelves:[]},
+  5:  {title:"Section 5",  tag:"Coming Soon",     tagColor:"gray",   shelves:[]},
+  6:  {title:"Section 6",  tag:"Singles",         tagColor:"red",    shelves:[]},
+  7:  {title:"Section 7",  tag:"Coming Soon",     tagColor:"gray",   shelves:[]},
+  8:  {title:"Section 8",  tag:"Coming Soon",     tagColor:"gray",   shelves:[]},
+  9:  {title:"Section 9",  tag:"Singles + Mixed", tagColor:"orange", shelves:[]},
+  10: {title:"Section 10", tag:"Mixed",           tagColor:"orange", shelves:[]},
 };
 
+// ── BUILD TABS ────────────────────────────────────────────────────────────────
 let current = 1;
 
 function buildTabs() {
-  const container = document.getElementById('tabs');
+  const c = document.getElementById('tabs');
   for (let i = 1; i <= 10; i++) {
     const s = sections[i];
     let badge = '';
-    if (s.tagColor === 'red')    badge = `<span class="badge red">S</span>`;
-    if (s.tagColor === 'orange') badge = `<span class="badge orange">M</span>`;
+    if (s.tagColor==='red')    badge=`<span class="badge red">S</span>`;
+    if (s.tagColor==='orange') badge=`<span class="badge orange">M</span>`;
     const btn = document.createElement('button');
-    btn.className = 'tab' + (i === 1 ? ' active' : '');
+    btn.className = 'tab'+(i===1?' active':'');
     btn.id = `tab-${i}`;
     btn.innerHTML = `${i}${badge}`;
-    btn.onclick = () => showSection(i);
-    container.appendChild(btn);
+    btn.onclick = ()=>showSection(i);
+    c.appendChild(btn);
   }
 }
 
-function openModal(product, shelfName, slotNum) {
-  if (product.type === 'empty') return;
-  document.getElementById('modal-name').textContent  = product.name;
-  document.getElementById('modal-size').textContent  = product.size || '';
+// ── MODAL ─────────────────────────────────────────────────────────────────────
+function openModal(name, size, type, shelfName, slotNum) {
+  if (type==='empty') return;
+  document.getElementById('modal-name').textContent  = name;
+  document.getElementById('modal-size').textContent  = size;
   document.getElementById('modal-shelf').textContent = `📍 ${shelfName}`;
-  document.getElementById('modal-slot').textContent  = `Slot ${slotNum} (left to right)`;
-
+  document.getElementById('modal-slot').textContent  = `Slot ${slotNum} · Left to right`;
   const typeEl = document.getElementById('modal-type');
-  typeEl.textContent = TYPE_LABEL[product.type] || product.type;
-  typeEl.style.background = TYPE_COLOR[product.type] || '#333';
-  typeEl.style.color = product.type === 'seltzer' ? '#111' : '#fff';
-
-  const img = document.getElementById('modal-img');
-  img.src   = (product.imgKey && IMAGES[product.imgKey]) || FALLBACK;
-  img.onerror = () => { img.src = FALLBACK; };
-
+  typeEl.textContent = TYPE_LABEL[type]||type;
+  typeEl.style.background = TYPE_COLOR[type]||'#333';
+  typeEl.style.color = type==='seltzer'?'#111':'#fff';
+  document.getElementById('modal-can-area').innerHTML = drawCan(name, size);
   document.getElementById('modal').classList.add('open');
 }
 
 function closeModal(e) {
-  if (e.target === document.getElementById('modal')) {
+  if (e.target===document.getElementById('modal'))
     document.getElementById('modal').classList.remove('open');
-  }
 }
 
+// ── RENDER ────────────────────────────────────────────────────────────────────
 function renderCooler(shelves) {
   const wrap = document.getElementById('cooler-wrap');
-
-  if (!shelves || shelves.length === 0) {
-    wrap.innerHTML = `<div class="empty-state">
-      <div class="icon">🍺</div>
-      <p>This section hasn't been filled in yet.<br>Tell Bushi what goes here!</p>
-    </div>`;
+  if (!shelves||shelves.length===0) {
+    wrap.innerHTML=`<div class="empty-state"><div class="icon">🍺</div><p>This section hasn't been filled in yet.<br>Tell Bushi what goes here!</p></div>`;
     return;
   }
 
-  let html = `<div class="cooler-box">
-    <div class="cooler-frost"></div>
-    <div class="cooler-label">❄ COOLER — Left to Right per shelf</div>`;
+  let html=`<div class="cooler-box"><div class="cooler-label">❄ COOLER — Left → Right</div>`;
 
-  shelves.forEach((shelf, si) => {
-    const products = [...shelf.products];
-    if (shelf.slots) {
-      while (products.length < shelf.slots) {
-        products.push({ name: "Empty", size: "—", type: "empty", imgKey: null });
-      }
-    }
+  shelves.forEach((shelf,si)=>{
+    const products=[...shelf.products];
+    if(shelf.slots){ while(products.length<shelf.slots) products.push({name:"Empty",size:"—",type:"empty"}); }
 
-    html += `<div class="shelf">
+    html+=`<div class="shelf">
       <div class="shelf-meta">
         <span class="shelf-name">${shelf.name}</span>
-        <span class="shelf-direction"><span> · </span></span>
+        <span class="shelf-dir">← left &nbsp;&nbsp; right →</span>
       </div>
       <div class="products">`;
 
-    products.forEach((p, idx) => {
-      const color  = TYPE_COLOR[p.type] || '#888';
-      const isEmpty = p.type === 'empty';
-      const imgSrc  = (p.imgKey && IMAGES[p.imgKey]) || '';
-
-      html += `
-        <div class="product-card" onclick="openModal(${JSON.stringify(p).replace(/"/g,"'")}, '${shelf.name}', ${idx+1})">
-          <div class="slot-num-top">${idx + 1}</div>
-          <div class="can-wrap ${isEmpty ? 'empty-slot' : ''}">
-            ${isEmpty
-              ? `<span class="empty-icon">—</span>`
-              : `<img src="${imgSrc}" alt="${p.name}" onerror="this.style.display='none'">`
-            }
-            ${!isEmpty ? `<div class="type-dot" style="background:${color}"></div>` : ''}
-          </div>
-          <div class="product-label">${isEmpty ? '' : p.name}</div>
-          <div class="size-label">${isEmpty ? '' : (p.size || '')}</div>
-        </div>`;
+    products.forEach((p,idx)=>{
+      const isEmpty=p.type==='empty';
+      html+=`<div class="product-card" onclick="openModal('${p.name.replace(/'/g,"\\'")}','${p.size||''}','${p.type}','${shelf.name}',${idx+1})">
+        <div class="slot-num-top">${idx+1}</div>
+        <div class="can-outer ${isEmpty?'empty-slot':''}">
+          ${isEmpty ? drawEmptyCan() : drawCan(p.name, p.size)}
+        </div>
+        <div class="product-label">${isEmpty?'':p.name}</div>
+        <div class="size-label">${isEmpty?'':p.size}</div>
+      </div>`;
     });
 
-    html += `</div><div class="shelf-rail"></div></div>`;
+    html+=`</div><div class="shelf-rail"></div></div>`;
   });
 
-  html += `</div>`;
-  wrap.innerHTML = html;
+  html+=`</div>`;
+  wrap.innerHTML=html;
 }
 
 function showSection(num) {
   document.getElementById(`tab-${current}`).classList.remove('active');
   document.getElementById(`tab-${num}`).classList.add('active');
-  current = num;
-  const s = sections[num];
-  document.getElementById('section-title').textContent = s.title;
-  const tag = document.getElementById('section-tag');
-  tag.textContent = s.tag;
-  tag.className = `sec-tag ${s.tagColor}`;
+  current=num;
+  const s=sections[num];
+  document.getElementById('section-title').textContent=s.title;
+  const tag=document.getElementById('section-tag');
+  tag.textContent=s.tag;
+  tag.className=`sec-tag ${s.tagColor}`;
   renderCooler(s.shelves);
-  window.scrollTo(0, 0);
+  window.scrollTo(0,0);
 }
 
 buildTabs();
