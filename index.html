@@ -7,11 +7,9 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Arial, sans-serif; background: #0d0d0d; color: #fff; min-height: 100vh; }
-
   .header { background: #111; padding: 14px 16px 10px; border-bottom: 3px solid #e63946; }
   .header h1 { font-size: 1.05rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
   .header p { font-size: 0.7rem; color: #777; margin-top: 2px; }
-
   .tabs { display: flex; overflow-x: auto; background: #161616; border-bottom: 2px solid #2a2a2a; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
   .tab { flex: 0 0 auto; padding: 10px 16px; font-size: 0.8rem; font-weight: bold; color: #555; cursor: pointer; border: none; background: none; border-bottom: 3px solid transparent; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; white-space: nowrap; }
@@ -19,63 +17,35 @@
   .badge { display: inline-block; font-size: 0.5rem; padding: 1px 4px; border-radius: 2px; margin-left: 4px; vertical-align: middle; }
   .badge.red { background: #e63946; color: #fff; }
   .badge.orange { background: #f4a261; color: #111; }
-
   .sec-header { padding: 12px 16px; background: #161616; border-bottom: 1px solid #2a2a2a; display: flex; align-items: center; justify-content: space-between; }
   .sec-header h2 { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
   .sec-tag { font-size: 0.6rem; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
   .sec-tag.red { background: #e63946; }
   .sec-tag.orange { background: #f4a261; color: #111; }
   .sec-tag.gray { background: #333; color: #aaa; }
-
   .cooler-wrap { padding: 12px 12px 0; }
-
-  .cooler-box {
-    background: linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%);
-    border: 2px solid #1e3a5f; border-radius: 8px; overflow: hidden;
-  }
-
-  .cooler-label {
-    font-size: 0.6rem; color: #7ec8e3; letter-spacing: 2px;
-    text-transform: uppercase; padding: 6px 12px;
-    border-bottom: 1px solid #1e3a5f;
-  }
-
+  .cooler-box { background: linear-gradient(180deg,#0a1628 0%,#0d1f3c 100%); border: 2px solid #1e3a5f; border-radius: 8px; overflow: hidden; }
+  .cooler-label { font-size: 0.6rem; color: #7ec8e3; letter-spacing: 2px; text-transform: uppercase; padding: 6px 12px; border-bottom: 1px solid #1e3a5f; }
   .shelf { border-bottom: 2px solid #1e3a5f; padding: 10px 10px 12px; }
   .shelf:last-child { border-bottom: none; }
-
   .shelf-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
   .shelf-name { font-size: 0.62rem; font-weight: bold; color: #7ec8e3; text-transform: uppercase; letter-spacing: 1px; }
-  .shelf-dir { font-size: 0.55rem; color: #3a5a7a; letter-spacing: 1px; }
-
+  .shelf-dir { font-size: 0.55rem; color: #3a5a7a; }
   .products { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
   .products::-webkit-scrollbar { display: none; }
-
   .product-card { flex: 0 0 auto; width: 68px; cursor: pointer; text-align: center; transition: transform 0.15s; }
   .product-card:active { transform: scale(0.93); }
-
   .slot-num-top { font-size: 0.52rem; color: #3a5a7a; margin-bottom: 3px; font-weight: bold; }
-
-  .can-outer {
-    width: 68px; height: 88px; border-radius: 6px;
-    border: 2px solid #1e3a5f;
-    display: flex; align-items: center; justify-content: center;
-    transition: border-color 0.15s;
-    background: #0a1628;
-  }
+  .can-outer { width: 68px; height: 88px; border-radius: 6px; border: 2px solid #1e3a5f; display: flex; align-items: center; justify-content: center; transition: border-color 0.15s; background: #0a1628; }
   .product-card:hover .can-outer { border-color: #e63946; }
-
   .can-outer.empty-slot { border: 2px dashed #1e2a3a; background: #090e18; }
-
   .product-label { font-size: 0.56rem; color: #aaa; margin-top: 4px; line-height: 1.2; font-weight: bold; }
   .size-label { font-size: 0.5rem; color: #555; margin-top: 1px; }
-
-  .shelf-rail { height: 4px; background: linear-gradient(90deg, #1e3a5f, #2a5080, #1e3a5f); border-radius: 2px; margin-top: 8px; }
-
-  /* MODAL */
+  .shelf-rail { height: 4px; background: linear-gradient(90deg,#1e3a5f,#2a5080,#1e3a5f); border-radius: 2px; margin-top: 8px; }
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.open { display: flex; }
   .modal { background: #1a1a2e; border-radius: 12px; border: 2px solid #e63946; width: 100%; max-width: 300px; overflow: hidden; animation: popIn 0.18s ease; }
-  @keyframes popIn { from { transform: scale(0.88); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  @keyframes popIn { from{transform:scale(0.88);opacity:0} to{transform:scale(1);opacity:1} }
   .modal-can-area { width: 100%; height: 160px; background: #0d1f3c; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #333; }
   .modal-body { padding: 16px; }
   .modal-name { font-size: 1.1rem; font-weight: 900; margin-bottom: 4px; }
@@ -83,31 +53,25 @@
   .modal-info { font-size: 0.72rem; color: #7ec8e3; margin-bottom: 3px; }
   .modal-type { display: inline-block; font-size: 0.62rem; padding: 3px 10px; border-radius: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin: 8px 0 14px; }
   .modal-close { width: 100%; padding: 12px; background: #e63946; color: #fff; border: none; border-radius: 6px; font-size: 0.9rem; font-weight: bold; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; }
-
-  .empty-state { text-align: center; padding: 48px 24px; color: #333; }
+  .empty-state { text-align: center; padding: 48px 24px; }
   .empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; }
   .empty-state p { font-size: 0.85rem; line-height: 1.7; color: #444; }
   .bottom-pad { height: 28px; }
 </style>
 </head>
 <body>
-
 <div class="header">
   <h1>🍺 Odell's Cooler Map</h1>
   <p>Tap any can to see details · Echo, Louisiana</p>
 </div>
-
 <div class="tabs" id="tabs"></div>
-
 <div class="sec-header">
   <h2 id="section-title">Section 1</h2>
   <span class="sec-tag red" id="section-tag">Singles</span>
 </div>
-
 <div class="cooler-wrap" id="cooler-wrap"></div>
 <div class="bottom-pad"></div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal">
     <div class="modal-can-area" id="modal-can-area"></div>
@@ -117,129 +81,111 @@
       <div class="modal-info" id="modal-shelf"></div>
       <div class="modal-info" id="modal-slot"></div>
       <div class="modal-type" id="modal-type"></div>
-      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕ Close</button>
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">Close</button>
     </div>
   </div>
 </div>
 
 <script>
-// ── CAN DESIGNS ──────────────────────────────────────────────────────────────
-// Each brand gets an SVG can drawn in its real colors
-function drawCan(brand, size) {
-  const designs = {
-    'Miller Lite': {
-      top: '#c8d8e8', body1: '#1a3a6e', body2: '#2255a0',
-      stripe: '#c8d8e8', label: '#fff',
-      text: 'MILLER\nLITE', textColor: '#fff', accent: '#c8d8e8'
-    },
-    'Coors Light': {
-      top: '#c0d0e0', body1: '#1a4a8a', body2: '#2060b0',
-      stripe: '#silver', label: '#fff',
-      text: 'COORS\nLIGHT', textColor: '#fff', accent: '#a8c8e8'
-    },
-    'Bud Light': {
-      top: '#aabbcc', body1: '#1a3a70', body2: '#1e4f9e',
-      stripe: '#c8d8f0', label: '#fff',
-      text: 'BUD\nLIGHT', textColor: '#fff', accent: '#d4e4f8'
-    },
-    'Michelob Ultra': {
-      top: '#b0c8e0', body1: '#0a2244', body2: '#1a3a6e',
-      stripe: '#7ec8e3', label: '#7ec8e3',
-      text: 'MICHELOB\nULTRA', textColor: '#7ec8e3', accent: '#7ec8e3'
-    },
-    'BuzzBallz': {
-      top: '#ff8800', body1: '#cc4400', body2: '#ff6600',
-      stripe: '#ffcc00', label: '#fff',
-      text: 'BUZZ\nBALLZ', textColor: '#fff', accent: '#ffcc00'
-    },
-  };
+const DESIGNS = {
+  "Miller Lite":              {top:"#c8d8e8",b1:"#1a3a6e",b2:"#2255a0",acc:"#c8d8e8",tc:"#fff",txt:"MILLER\nLITE"},
+  "Coors Light":              {top:"#c0d0e0",b1:"#1a4a8a",b2:"#2060b0",acc:"#a8c8e8",tc:"#fff",txt:"COORS\nLIGHT"},
+  "Bud Light":                {top:"#aabbcc",b1:"#1a3a70",b2:"#1e4f9e",acc:"#d4e4f8",tc:"#fff",txt:"BUD\nLIGHT"},
+  "Michelob Ultra":           {top:"#b0c8e0",b1:"#0a2244",b2:"#1a3a6e",acc:"#7ec8e3",tc:"#7ec8e3",txt:"MICHELOB\nULTRA"},
+  "Budweiser":                {top:"#e8d0a0",b1:"#b22222",b2:"#cc3333",acc:"#e8d0a0",tc:"#fff",txt:"BUDWEISER"},
+  "Twisted Tea":              {top:"#c8e8b0",b1:"#2a6a2a",b2:"#3a8a3a",acc:"#c8e8b0",tc:"#fff",txt:"TWISTED\nTEA"},
+  "Natural Light":            {top:"#d0e8f8",b1:"#1a5a9a",b2:"#2a6aaa",acc:"#d0e8f8",tc:"#fff",txt:"NATTY\nLIGHT"},
+  "Busch Light":              {top:"#a8d8f0",b1:"#1a4a7a",b2:"#1e5a8a",acc:"#a8d8f0",tc:"#fff",txt:"BUSCH\nLIGHT"},
+  "Cayman Jack":              {top:"#d4eaff",b1:"#1a3a6e",b2:"#1e4a8a",acc:"#d4eaff",tc:"#fff",txt:"CAYMAN\nJACK"},
+  "Corona Extra":             {top:"#f0d060",b1:"#c8a820",b2:"#e0c030",acc:"#f0d060",tc:"#fff",txt:"CORONA\nEXTRA"},
+  "Redds Wicked Apple":       {top:"#cc2200",b1:"#8a1500",b2:"#cc2200",acc:"#ff6644",tc:"#fff",txt:"REDD'S\nWICKED"},
+  "Steel Reserve":            {top:"#888888",b1:"#333333",b2:"#555555",acc:"#aaaaaa",tc:"#fff",txt:"STEEL\nRESERVE"},
+  "Miller High Life":         {top:"#f0d060",b1:"#8a6a00",b2:"#c0980a",acc:"#f0d060",tc:"#fff",txt:"HIGH\nLIFE"},
+  "Simply Spiked Strawberry": {top:"#ff8888",b1:"#cc2244",b2:"#ee3355",acc:"#ffaaaa",tc:"#fff",txt:"SIMPLY\nSPIKED"},
+  "Bud Light Chelada":        {top:"#e8d0a0",b1:"#b22222",b2:"#1a3a70",acc:"#e8d0a0",tc:"#fff",txt:"BUD LT\nCHELADA"},
+  "BuzzBallz":                {top:"#ff8800",b1:"#cc4400",b2:"#ff6600",acc:"#ffcc00",tc:"#fff",txt:"BUZZ\nBALLZ"},
+};
 
-  const d = designs[brand] || {
-    top: '#555', body1: '#333', body2: '#444',
-    stripe: '#666', label: '#aaa',
-    text: brand.toUpperCase(), textColor: '#fff', accent: '#888'
-  };
+const TYPE_COLOR = {single:"#e63946",beer:"#f4a261",seltzer:"#7ec8e3",liquor:"#9b5de5",empty:"#1e2a3a"};
+const TYPE_LABEL = {single:"Single Can",beer:"Beer / Bottle",seltzer:"Hard Seltzer / Flavored",liquor:"Liquor / Wine",empty:"Empty Slot"};
 
-  const lines = d.text.split('\n');
-
-  return `<svg width="44" height="72" viewBox="0 0 44 72" xmlns="http://www.w3.org/2000/svg">
+function drawCan(key, size, scale) {
+  scale = scale || 1;
+  const w = Math.round(44*scale), h = Math.round(72*scale);
+  const d = DESIGNS[key] || {top:"#555",b1:"#333",b2:"#444",acc:"#888",tc:"#fff",txt:key.slice(0,8).toUpperCase()};
+  const uid = key.replace(/\W/g,"") + Math.random().toString(36).slice(2,5);
+  const lines = d.txt.split("\n");
+  const cy = lines.length===1 ? 42 : 36;
+  return `<svg width="${w}" height="${h}" viewBox="0 0 44 72" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="bg${brand.replace(/\s/g,'')}" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="${d.body1}"/>
-        <stop offset="50%" stop-color="${d.body2}"/>
-        <stop offset="100%" stop-color="${d.body1}"/>
+      <linearGradient id="g${uid}" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="${d.b1}"/>
+        <stop offset="50%" stop-color="${d.b2}"/>
+        <stop offset="100%" stop-color="${d.b1}"/>
       </linearGradient>
-      <clipPath id="canClip${brand.replace(/\s/g,'')}">
-        <rect x="4" y="8" width="36" height="56" rx="6"/>
-      </clipPath>
+      <clipPath id="c${uid}"><rect x="4" y="8" width="36" height="56" rx="6"/></clipPath>
     </defs>
-
-    <!-- Can body -->
-    <rect x="4" y="8" width="36" height="56" rx="6" fill="url(#bg${brand.replace(/\s/g,'')})"/>
-
-    <!-- Shine -->
-    <rect x="4" y="8" width="36" height="56" rx="6"
-      fill="none" clip-path="url(#canClip${brand.replace(/\s/g,'')})"/>
-    <rect x="6" y="10" width="8" height="52" rx="3"
-      fill="rgba(255,255,255,0.08)" clip-path="url(#canClip${brand.replace(/\s/g,'')})"/>
-
-    <!-- Accent stripe -->
-    <rect x="4" y="28" width="36" height="5" fill="${d.accent}" opacity="0.25"
-      clip-path="url(#canClip${brand.replace(/\s/g,'')})"/>
-
-    <!-- Brand text -->
-    ${lines.map((line, i) => `
-    <text x="22" y="${lines.length === 1 ? 42 : 36 + i*12}"
-      font-family="Arial Black,Arial" font-weight="900"
-      font-size="${line.length > 6 ? '6' : '7'}"
-      fill="${d.textColor}" text-anchor="middle"
-      letter-spacing="0.5">${line}</text>`).join('')}
-
-    <!-- Size badge -->
-    <rect x="8" y="52" width="28" height="8" rx="2" fill="rgba(0,0,0,0.3)"/>
-    <text x="22" y="58" font-family="Arial" font-size="5.5" fill="${d.accent}"
-      text-anchor="middle" font-weight="bold">${size || ''}</text>
-
-    <!-- Top cap -->
+    <rect x="4" y="8" width="36" height="56" rx="6" fill="url(#g${uid})"/>
+    <rect x="6" y="10" width="8" height="52" rx="3" fill="rgba(255,255,255,0.07)" clip-path="url(#c${uid})"/>
+    <rect x="4" y="30" width="36" height="4" fill="${d.acc}" opacity="0.2" clip-path="url(#c${uid})"/>
+    ${lines.map((l,i)=>`<text x="22" y="${cy+i*11}" font-family="Arial Black,Arial" font-weight="900" font-size="${l.length>7?"5.5":"7"}" fill="${d.tc}" text-anchor="middle">${l}</text>`).join("")}
+    <rect x="8" y="52" width="28" height="8" rx="2" fill="rgba(0,0,0,0.35)"/>
+    <text x="22" y="58" font-family="Arial" font-size="5" fill="${d.acc}" text-anchor="middle" font-weight="bold">${(size||"").replace(" bottle","").replace(" can","")}</text>
     <ellipse cx="22" cy="9" rx="18" ry="4" fill="${d.top}"/>
     <ellipse cx="22" cy="8" rx="10" ry="2.5" fill="${d.top}" opacity="0.6"/>
     <circle cx="22" cy="7" r="3" fill="#888"/>
     <rect x="18" y="5.5" width="8" height="2" rx="1" fill="#999"/>
-
-    <!-- Bottom -->
-    <ellipse cx="22" cy="63" rx="18" ry="3.5" fill="${d.body1}" opacity="0.8"/>
+    <ellipse cx="22" cy="63" rx="18" ry="3.5" fill="${d.b1}" opacity="0.8"/>
   </svg>`;
 }
 
-function drawEmptyCan() {
+function drawEmpty() {
   return `<svg width="44" height="72" viewBox="0 0 44 72" xmlns="http://www.w3.org/2000/svg">
     <rect x="4" y="8" width="36" height="56" rx="6" fill="none" stroke="#1e2a3a" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <text x="22" y="40" font-family="Arial" font-size="14" fill="#1e2a3a" text-anchor="middle">—</text>
+    <text x="22" y="40" font-family="Arial" font-size="14" fill="#1e2a3a" text-anchor="middle">--</text>
   </svg>`;
 }
-
-// ── DATA ─────────────────────────────────────────────────────────────────────
-const TYPE_COLOR = { single:'#e63946', beer:'#f4a261', seltzer:'#7ec8e3', liquor:'#9b5de5', empty:'#1e2a3a' };
-const TYPE_LABEL = { single:'Single Can', beer:'Beer Pack', seltzer:'Hard Seltzer', liquor:'Liquor / Wine', empty:'Empty Slot' };
 
 const sections = {
   1: {
     title:"Section 1", tag:"Singles", tagColor:"red",
     shelves:[
-      { name:"Top Shelf", slots:7, products:[
-        { name:"Miller Lite",    size:"16 oz", type:"single" },
-        { name:"Miller Lite",    size:"24 oz", type:"single" },
-        { name:"Coors Light",    size:"24 oz", type:"single" },
-        { name:"Coors Light",    size:"24 oz", type:"single" },
-        { name:"Empty",          size:"—",     type:"empty"  },
-        { name:"Bud Light",      size:"16 oz", type:"single" },
-        { name:"Michelob Ultra", size:"16 oz", type:"single" },
+      {name:"Top Shelf", slots:7, products:[
+        {name:"Miller Lite",    key:"Miller Lite",    size:"16 oz",        type:"single"},
+        {name:"Miller Lite",    key:"Miller Lite",    size:"24 oz",        type:"single"},
+        {name:"Coors Light",    key:"Coors Light",    size:"24 oz",        type:"single"},
+        {name:"Coors Light",    key:"Coors Light",    size:"24 oz",        type:"single"},
+        {name:"Empty",          key:"",               size:"--",           type:"empty"},
+        {name:"Bud Light",      key:"Bud Light",      size:"16 oz",        type:"single"},
+        {name:"Michelob Ultra", key:"Michelob Ultra", size:"16 oz",        type:"single"},
       ]},
-      { name:"Shelf 2", slots:7, products:[] },
-      { name:"Shelf 3", slots:6, products:[] },
-      { name:"Shelf 4", slots:6, products:[] },
-      { name:"Bottom Shelf", slots:null, products:[
-        { name:"BuzzBallz", size:"Asst.", type:"single" },
+      {name:"Shelf 2", slots:7, products:[
+        {name:"Michelob Ultra", key:"Michelob Ultra", size:"25 oz",        type:"single"},
+        {name:"Budweiser",      key:"Budweiser",      size:"25 oz",        type:"single"},
+        {name:"Bud Light",      key:"Bud Light",      size:"25 oz",        type:"single"},
+        {name:"Bud Light",      key:"Bud Light",      size:"25 oz",        type:"single"},
+        {name:"Twisted Tea",    key:"Twisted Tea",    size:"24 oz",        type:"single"},
+        {name:"Natural Light",  key:"Natural Light",  size:"25 oz",        type:"single"},
+        {name:"Busch Light",    key:"Busch Light",    size:"25 oz",        type:"single"},
+      ]},
+      {name:"Shelf 3", slots:6, products:[
+        {name:"Budweiser",      key:"Budweiser",      size:"18 oz bottle", type:"beer"},
+        {name:"Bud Light",      key:"Bud Light",      size:"18 oz bottle", type:"beer"},
+        {name:"Bud Light",      key:"Bud Light",      size:"18 oz bottle", type:"beer"},
+        {name:"Coors Light",    key:"Coors Light",    size:"12 oz bottle", type:"beer"},
+        {name:"Cayman Jack",    key:"Cayman Jack",    size:"24 oz can",    type:"seltzer"},
+        {name:"Corona Extra",   key:"Corona Extra",   size:"24 oz bottle", type:"beer"},
+      ]},
+      {name:"Shelf 4", slots:6, products:[
+        {name:"Redd's Wicked Apple",       key:"Redds Wicked Apple",       size:"24 oz can", type:"seltzer"},
+        {name:"Steel Reserve",             key:"Steel Reserve",             size:"24 oz can", type:"beer"},
+        {name:"Miller High Life",          key:"Miller High Life",          size:"32 oz can", type:"beer"},
+        {name:"Empty",                     key:"",                          size:"--",        type:"empty"},
+        {name:"Simply Spiked Strawberry",  key:"Simply Spiked Strawberry",  size:"24 oz can", type:"seltzer"},
+        {name:"Bud Light Chelada",         key:"Bud Light Chelada",         size:"24 oz can", type:"beer"},
+      ]},
+      {name:"Bottom Shelf", slots:null, products:[
+        {name:"BuzzBallz", key:"BuzzBallz", size:"Asst.", type:"single"},
       ]},
     ]
   },
@@ -254,92 +200,78 @@ const sections = {
   10: {title:"Section 10", tag:"Mixed",           tagColor:"orange", shelves:[]},
 };
 
-// ── BUILD TABS ────────────────────────────────────────────────────────────────
 let current = 1;
 
 function buildTabs() {
-  const c = document.getElementById('tabs');
-  for (let i = 1; i <= 10; i++) {
-    const s = sections[i];
-    let badge = '';
-    if (s.tagColor==='red')    badge=`<span class="badge red">S</span>`;
-    if (s.tagColor==='orange') badge=`<span class="badge orange">M</span>`;
-    const btn = document.createElement('button');
-    btn.className = 'tab'+(i===1?' active':'');
-    btn.id = `tab-${i}`;
-    btn.innerHTML = `${i}${badge}`;
-    btn.onclick = ()=>showSection(i);
+  const c = document.getElementById("tabs");
+  for (let i=1;i<=10;i++) {
+    const s=sections[i];
+    let badge="";
+    if(s.tagColor==="red")    badge=`<span class="badge red">S</span>`;
+    if(s.tagColor==="orange") badge=`<span class="badge orange">M</span>`;
+    const btn=document.createElement("button");
+    btn.className="tab"+(i===1?" active":"");
+    btn.id=`tab-${i}`;
+    btn.innerHTML=`${i}${badge}`;
+    btn.onclick=()=>showSection(i);
     c.appendChild(btn);
   }
 }
 
-// ── MODAL ─────────────────────────────────────────────────────────────────────
-function openModal(name, size, type, shelfName, slotNum) {
-  if (type==='empty') return;
-  document.getElementById('modal-name').textContent  = name;
-  document.getElementById('modal-size').textContent  = size;
-  document.getElementById('modal-shelf').textContent = `📍 ${shelfName}`;
-  document.getElementById('modal-slot').textContent  = `Slot ${slotNum} · Left to right`;
-  const typeEl = document.getElementById('modal-type');
-  typeEl.textContent = TYPE_LABEL[type]||type;
-  typeEl.style.background = TYPE_COLOR[type]||'#333';
-  typeEl.style.color = type==='seltzer'?'#111':'#fff';
-  document.getElementById('modal-can-area').innerHTML = drawCan(name, size);
-  document.getElementById('modal').classList.add('open');
+function openModal(name, key, size, type, shelfName, slotNum) {
+  if(type==="empty") return;
+  document.getElementById("modal-name").textContent=name;
+  document.getElementById("modal-size").textContent=size;
+  document.getElementById("modal-shelf").textContent="📍 "+shelfName;
+  document.getElementById("modal-slot").textContent="Slot "+slotNum+" · Left to right";
+  const typeEl=document.getElementById("modal-type");
+  typeEl.textContent=TYPE_LABEL[type]||type;
+  typeEl.style.background=TYPE_COLOR[type]||"#333";
+  typeEl.style.color=type==="seltzer"?"#111":"#fff";
+  document.getElementById("modal-can-area").innerHTML=drawCan(key,size,1.8);
+  document.getElementById("modal").classList.add("open");
 }
 
 function closeModal(e) {
-  if (e.target===document.getElementById('modal'))
-    document.getElementById('modal').classList.remove('open');
+  if(e.target===document.getElementById("modal"))
+    document.getElementById("modal").classList.remove("open");
 }
 
-// ── RENDER ────────────────────────────────────────────────────────────────────
 function renderCooler(shelves) {
-  const wrap = document.getElementById('cooler-wrap');
-  if (!shelves||shelves.length===0) {
-    wrap.innerHTML=`<div class="empty-state"><div class="icon">🍺</div><p>This section hasn't been filled in yet.<br>Tell Bushi what goes here!</p></div>`;
+  const wrap=document.getElementById("cooler-wrap");
+  if(!shelves||shelves.length===0){
+    wrap.innerHTML=`<div class="empty-state"><div class="icon">🍺</div><p>This section has not been filled in yet.</p></div>`;
     return;
   }
-
-  let html=`<div class="cooler-box"><div class="cooler-label">❄ COOLER — Left → Right</div>`;
-
-  shelves.forEach((shelf,si)=>{
+  let html=`<div class="cooler-box"><div class="cooler-label">❄ COOLER — Left to Right</div>`;
+  shelves.forEach(shelf=>{
     const products=[...shelf.products];
-    if(shelf.slots){ while(products.length<shelf.slots) products.push({name:"Empty",size:"—",type:"empty"}); }
-
-    html+=`<div class="shelf">
-      <div class="shelf-meta">
-        <span class="shelf-name">${shelf.name}</span>
-        <span class="shelf-dir">← left &nbsp;&nbsp; right →</span>
-      </div>
-      <div class="products">`;
-
+    if(shelf.slots){while(products.length<shelf.slots)products.push({name:"Empty",key:"",size:"--",type:"empty"});}
+    html+=`<div class="shelf"><div class="shelf-meta"><span class="shelf-name">${shelf.name}</span><span class="shelf-dir">← left &nbsp; right →</span></div><div class="products">`;
     products.forEach((p,idx)=>{
-      const isEmpty=p.type==='empty';
-      html+=`<div class="product-card" onclick="openModal('${p.name.replace(/'/g,"\\'")}','${p.size||''}','${p.type}','${shelf.name}',${idx+1})">
+      const isEmpty=p.type==="empty";
+      html+=`<div class="product-card" onclick="openModal(${JSON.stringify(p.name)},${JSON.stringify(p.key||"")},${JSON.stringify(p.size||"")},${JSON.stringify(p.type)},${JSON.stringify(shelf.name)},${idx+1})">
         <div class="slot-num-top">${idx+1}</div>
-        <div class="can-outer ${isEmpty?'empty-slot':''}">
-          ${isEmpty ? drawEmptyCan() : drawCan(p.name, p.size)}
+        <div class="can-outer ${isEmpty?"empty-slot":""}">
+          ${isEmpty?drawEmpty():drawCan(p.key||p.name,p.size,1)}
         </div>
-        <div class="product-label">${isEmpty?'':p.name}</div>
-        <div class="size-label">${isEmpty?'':p.size}</div>
+        <div class="product-label">${isEmpty?"":p.name}</div>
+        <div class="size-label">${isEmpty?"":p.size}</div>
       </div>`;
     });
-
     html+=`</div><div class="shelf-rail"></div></div>`;
   });
-
   html+=`</div>`;
   wrap.innerHTML=html;
 }
 
 function showSection(num) {
-  document.getElementById(`tab-${current}`).classList.remove('active');
-  document.getElementById(`tab-${num}`).classList.add('active');
+  document.getElementById(`tab-${current}`).classList.remove("active");
+  document.getElementById(`tab-${num}`).classList.add("active");
   current=num;
   const s=sections[num];
-  document.getElementById('section-title').textContent=s.title;
-  const tag=document.getElementById('section-tag');
+  document.getElementById("section-title").textContent=s.title;
+  const tag=document.getElementById("section-tag");
   tag.textContent=s.tag;
   tag.className=`sec-tag ${s.tagColor}`;
   renderCooler(s.shelves);
