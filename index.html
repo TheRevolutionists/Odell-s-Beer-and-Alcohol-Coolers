@@ -6,269 +6,239 @@
 <title>Odell's Cooler Map</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #0d0d0d; color: #fff; min-height: 100vh; }
 
-  body {
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: #fff;
-    min-height: 100vh;
-  }
+  /* HEADER */
+  .header { background: #111; padding: 14px 16px 10px; border-bottom: 3px solid #e63946; }
+  .header h1 { font-size: 1.05rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+  .header p { font-size: 0.7rem; color: #777; margin-top: 2px; }
 
-  /* ── HEADER ── */
-  .header {
-    background: #111;
-    padding: 14px 16px 10px;
-    border-bottom: 3px solid #e63946;
-  }
-
-  .header h1 {
-    font-size: 1.1rem;
-    font-weight: 900;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .header p {
-    font-size: 0.7rem;
-    color: #888;
-    margin-top: 2px;
-    letter-spacing: 1px;
-  }
-
-  /* ── SECTION TABS ── */
-  .tabs {
-    display: flex;
-    overflow-x: auto;
-    background: #1a1a1a;
-    border-bottom: 2px solid #333;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
+  /* TABS */
+  .tabs { display: flex; overflow-x: auto; background: #161616; border-bottom: 2px solid #2a2a2a; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 0 0 auto; padding: 10px 16px; font-size: 0.8rem; font-weight: bold; color: #555; cursor: pointer; border: none; background: none; border-bottom: 3px solid transparent; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; white-space: nowrap; }
+  .tab.active { color: #fff; border-bottom-color: #e63946; }
+  .badge { display: inline-block; font-size: 0.5rem; padding: 1px 4px; border-radius: 2px; margin-left: 4px; vertical-align: middle; }
+  .badge.red { background: #e63946; color: #fff; }
+  .badge.orange { background: #f4a261; color: #111; }
 
-  .tab {
-    flex: 0 0 auto;
-    padding: 10px 14px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #666;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    white-space: nowrap;
-    background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    transition: all 0.15s;
-  }
+  /* SECTION HEADER */
+  .sec-header { padding: 12px 16px; background: #161616; border-bottom: 1px solid #2a2a2a; display: flex; align-items: center; justify-content: space-between; }
+  .sec-header h2 { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+  .sec-tag { font-size: 0.6rem; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+  .sec-tag.red { background: #e63946; }
+  .sec-tag.orange { background: #f4a261; color: #111; }
+  .sec-tag.gray { background: #333; color: #aaa; }
 
-  .tab.active {
-    color: #fff;
-    border-bottom-color: #e63946;
-  }
+  /* COOLER BODY */
+  .cooler-wrap { padding: 12px 12px 0; }
 
-  .tab .tab-badge {
-    display: inline-block;
-    font-size: 0.55rem;
-    padding: 1px 4px;
-    border-radius: 2px;
-    margin-left: 4px;
-    vertical-align: middle;
-  }
-
-  .tab .tab-badge.red    { background: #e63946; color: #fff; }
-  .tab .tab-badge.orange { background: #f4a261; color: #111; }
-
-  /* ── SECTION HEADER ── */
-  .section-header {
-    padding: 14px 16px 10px;
-    background: #1a1a1a;
-    border-bottom: 1px solid #333;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .section-header h2 {
-    font-size: 1rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .section-tag {
-    font-size: 0.65rem;
-    padding: 3px 8px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-  }
-  .section-tag.red    { background: #e63946; color: #fff; }
-  .section-tag.orange { background: #f4a261; color: #111; }
-  .section-tag.gray   { background: #333; color: #aaa; }
-
-  /* ── SHELVES ── */
-  .shelves { padding: 12px 16px; }
-
-  .shelf {
-    background: #1e1e2e;
-    border-radius: 6px;
-    margin-bottom: 10px;
+  .cooler-box {
+    background: linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%);
+    border: 2px solid #1e3a5f;
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #333;
+    position: relative;
   }
 
-  .shelf-header {
-    background: #252535;
-    padding: 7px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #333;
+  .cooler-frost {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(126,200,227,0.4), transparent);
   }
 
-  .shelf-name {
-    font-size: 0.7rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #7ec8e3;
+  .cooler-label {
+    font-size: 0.6rem; color: #7ec8e3; letter-spacing: 2px;
+    text-transform: uppercase; padding: 6px 12px;
+    border-bottom: 1px solid #1e3a5f;
+    display: flex; align-items: center; gap: 6px;
   }
 
-  .shelf-slots {
-    font-size: 0.65rem;
-    color: #555;
-  }
+  /* SHELF */
+  .shelf { border-bottom: 2px solid #1e3a5f; padding: 10px 10px 12px; }
+  .shelf:last-child { border-bottom: none; }
 
-  /* ── PRODUCT ROWS ── */
-  .product-row {
-    display: flex;
-    align-items: center;
-    padding: 10px 12px;
-    border-bottom: 1px solid #2a2a3a;
-  }
-  .product-row:last-child { border-bottom: none; }
-
-  .slot-num {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #333;
-    color: #888;
-    font-size: 0.65rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-right: 10px;
-  }
-
-  .product-info { flex: 1; }
-
-  .product-name {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #fff;
-  }
-
-  .product-detail {
-    font-size: 0.7rem;
-    color: #888;
-    margin-top: 1px;
-  }
-
-  .product-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-left: 8px;
-  }
-
-  .empty-row .product-name {
-    color: #444;
-    font-style: italic;
-    font-weight: normal;
-  }
-
-  /* ── EMPTY STATE ── */
-  .empty-state {
-    text-align: center;
-    padding: 48px 24px;
-    color: #444;
-  }
-  .empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; }
-  .empty-state p { font-size: 0.85rem; line-height: 1.7; }
-
-  /* ── LEGEND ── */
-  .legend {
-    margin: 0 16px 16px;
-    background: #1a1a1a;
-    border-radius: 6px;
-    padding: 12px;
-    border: 1px solid #333;
-  }
-
-  .legend-title {
-    font-size: 0.65rem;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  .shelf-meta {
+    display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 8px;
   }
 
-  .legend-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  .shelf-name {
+    font-size: 0.62rem; font-weight: bold; color: #7ec8e3;
+    text-transform: uppercase; letter-spacing: 1px;
   }
 
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.72rem;
-    color: #aaa;
+  .shelf-direction {
+    font-size: 0.55rem; color: #555;
+    display: flex; align-items: center; gap: 4px;
   }
 
-  .legend-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
+  .shelf-direction::before { content: '← LEFT'; }
+  .shelf-direction::after { content: 'RIGHT →'; }
+  .shelf-direction span { color: #333; }
+
+  /* PRODUCT GRID */
+  .products {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
   }
+  .products::-webkit-scrollbar { display: none; }
+
+  /* PRODUCT CARD */
+  .product-card {
+    flex: 0 0 auto;
+    width: 72px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.15s;
+    position: relative;
+  }
+
+  .product-card:active { transform: scale(0.95); }
+
+  .slot-num-top {
+    font-size: 0.55rem; color: #444; margin-bottom: 3px;
+    font-weight: bold;
+  }
+
+  .can-wrap {
+    width: 72px; height: 90px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid #1e3a5f;
+    background: #0a1628;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+
+  .product-card:hover .can-wrap,
+  .product-card:focus .can-wrap { border-color: #e63946; }
+
+  .can-wrap img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 4px;
+  }
+
+  .can-wrap.empty-slot {
+    border: 2px dashed #2a2a2a;
+    background: #0a0a0a;
+  }
+
+  .empty-icon { font-size: 1.2rem; color: #2a2a2a; }
+
+  .product-label {
+    font-size: 0.58rem; color: #aaa; margin-top: 4px;
+    line-height: 1.2; font-weight: bold;
+    max-width: 72px; word-break: break-word;
+  }
+
+  .size-label {
+    font-size: 0.52rem; color: #555; margin-top: 1px;
+  }
+
+  .type-dot {
+    position: absolute; bottom: 4px; right: 4px;
+    width: 7px; height: 7px; border-radius: 50%;
+  }
+
+  /* SHELF RAIL */
+  .shelf-rail {
+    height: 4px;
+    background: linear-gradient(90deg, #1e3a5f, #2a5080, #1e3a5f);
+    border-radius: 2px;
+    margin-top: 8px;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); z-index: 100;
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: #1a1a2e; border-radius: 12px;
+    border: 2px solid #e63946;
+    width: 100%; max-width: 320px;
+    overflow: hidden; animation: popIn 0.2s ease;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .modal-img {
+    width: 100%; height: 180px;
+    background: #0d1f3c;
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid #333;
+  }
+
+  .modal-img img { max-height: 160px; max-width: 90%; object-fit: contain; }
+
+  .modal-body { padding: 16px; }
+  .modal-name { font-size: 1.1rem; font-weight: 900; margin-bottom: 4px; }
+  .modal-size { font-size: 0.8rem; color: #aaa; margin-bottom: 8px; }
+  .modal-shelf { font-size: 0.75rem; color: #7ec8e3; margin-bottom: 4px; }
+  .modal-slot  { font-size: 0.75rem; color: #888; margin-bottom: 12px; }
+
+  .modal-type {
+    display: inline-block; font-size: 0.65rem; padding: 3px 10px;
+    border-radius: 20px; font-weight: bold; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 16px;
+  }
+
+  .modal-close {
+    width: 100%; padding: 12px; background: #e63946; color: #fff;
+    border: none; border-radius: 6px; font-size: 0.9rem; font-weight: bold;
+    cursor: pointer; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* EMPTY SECTION */
+  .empty-state { text-align: center; padding: 48px 24px; color: #333; }
+  .empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .empty-state p { font-size: 0.85rem; line-height: 1.7; color: #444; }
+
+  /* BOTTOM PAD */
+  .bottom-pad { height: 24px; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>Odell's Grocery — Cooler Map</h1>
-  <p>Beer &amp; Alcohol · 10 Sections · Echo, Louisiana</p>
+  <h1>🍺 Odell's Cooler Map</h1>
+  <p>Tap any product to see details · Echo, Louisiana</p>
 </div>
 
-<!-- TABS -->
 <div class="tabs" id="tabs"></div>
 
-<!-- SECTION HEADER -->
-<div class="section-header">
+<div class="sec-header">
   <h2 id="section-title">Section 1</h2>
-  <span class="section-tag" id="section-tag">Singles</span>
+  <span class="sec-tag" id="section-tag">Singles</span>
 </div>
 
-<!-- SHELVES -->
-<div class="shelves" id="shelves-container"></div>
+<div class="cooler-wrap" id="cooler-wrap"></div>
+<div class="bottom-pad"></div>
 
-<!-- LEGEND -->
-<div class="legend">
-  <div class="legend-title">Color Key</div>
-  <div class="legend-items">
-    <div class="legend-item"><div class="legend-dot" style="background:#e63946"></div> Singles</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#f4a261"></div> Beer (packs)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#7ec8e3"></div> Seltzer</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#9b5de5"></div> Liquor</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#333; border:1px dashed #555"></div> Empty</div>
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-img"><img id="modal-img" src="" alt=""></div>
+    <div class="modal-body">
+      <div class="modal-name" id="modal-name"></div>
+      <div class="modal-size" id="modal-size"></div>
+      <div class="modal-shelf" id="modal-shelf"></div>
+      <div class="modal-slot"  id="modal-slot"></div>
+      <div class="modal-type"  id="modal-type"></div>
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">Close</button>
+    </div>
   </div>
 </div>
 
@@ -278,46 +248,65 @@ const TYPE_COLOR = {
   beer:    '#f4a261',
   seltzer: '#7ec8e3',
   liquor:  '#9b5de5',
-  empty:   '#333',
+  empty:   '#2a2a2a',
 };
+
+const TYPE_LABEL = {
+  single:  'Single Can',
+  beer:    'Beer (Pack)',
+  seltzer: 'Hard Seltzer',
+  liquor:  'Liquor / Wine',
+  empty:   'Empty Slot',
+};
+
+// Product image URLs
+const IMAGES = {
+  'Miller Lite 16oz':    'https://www.kroger.com/product/images/large/front/0007020000107.png',
+  'Miller Lite 24oz':    'https://www.kroger.com/product/images/large/front/0007020000456.png',
+  'Coors Light 24oz':    'https://www.kroger.com/product/images/large/front/0003410035200.png',
+  'Bud Light 16oz':      'https://www.kroger.com/product/images/large/front/0001800001718.png',
+  'Michelob Ultra 16oz': 'https://www.kroger.com/product/images/large/front/0001800012249.png',
+  'BuzzBallz':           'https://www.buzzballz.com/wp-content/uploads/2021/03/ChilliMango.png',
+};
+
+const FALLBACK = 'https://via.placeholder.com/120x160/0d1f3c/7ec8e3?text=🍺';
 
 const sections = {
   1: {
-    title: "Section 1",
-    tag: "Singles", tagColor: "red",
+    title: "Section 1", tag: "Singles", tagColor: "red",
     shelves: [
       {
         name: "Top Shelf", slots: 7,
         products: [
-          { name: "Miller Lite",     detail: "16 oz single", type: "single" },
-          { name: "Miller Lite",     detail: "24 oz single", type: "single" },
-          { name: "Coors Light",     detail: "24 oz single", type: "single" },
-          { name: "Coors Light",     detail: "24 oz single", type: "single" },
-          { name: "Empty",           detail: "—",            type: "empty"  },
-          { name: "Bud Light",       detail: "16 oz single", type: "single" },
-          { name: "Michelob Ultra",  detail: "16 oz single", type: "single" },
+          { name: "Miller Lite",    size: "16 oz", type: "single", imgKey: "Miller Lite 16oz" },
+          { name: "Miller Lite",    size: "24 oz", type: "single", imgKey: "Miller Lite 24oz" },
+          { name: "Coors Light",    size: "24 oz", type: "single", imgKey: "Coors Light 24oz" },
+          { name: "Coors Light",    size: "24 oz", type: "single", imgKey: "Coors Light 24oz" },
+          { name: "Empty",          size: "—",     type: "empty",  imgKey: null },
+          { name: "Bud Light",      size: "16 oz", type: "single", imgKey: "Bud Light 16oz" },
+          { name: "Michelob Ultra", size: "16 oz", type: "single", imgKey: "Michelob Ultra 16oz" },
         ]
       },
-      { name: "Shelf 2", slots: 7, products: [] },
-      { name: "Shelf 3", slots: 6, products: [] },
-      { name: "Shelf 4", slots: 6, products: [] },
+      { name: "Shelf 2", slots: 7,  products: [] },
+      { name: "Shelf 3", slots: 6,  products: [] },
+      { name: "Shelf 4", slots: 6,  products: [] },
       {
         name: "Bottom Shelf", slots: null,
         products: [
-          { name: "BuzzBallz", detail: "Assorted flavors", type: "single" },
+          { name: "BuzzBallz", size: "Assorted", type: "single", imgKey: "BuzzBallz" },
         ]
       },
     ]
   },
-  2:  { title: "Section 2",  tag: "Coming Soon", tagColor: "gray", shelves: [] },
-  3:  { title: "Section 3",  tag: "Coming Soon", tagColor: "gray", shelves: [] },
-  4:  { title: "Section 4",  tag: "Coming Soon", tagColor: "gray", shelves: [] },
-  5:  { title: "Section 5",  tag: "Coming Soon", tagColor: "gray", shelves: [] },
-  6:  { title: "Section 6",  tag: "Singles",     tagColor: "red",  shelves: [] },
-  7:  { title: "Section 7",  tag: "Coming Soon", tagColor: "gray", shelves: [] },
-  8:  { title: "Section 8",  tag: "Coming Soon", tagColor: "gray", shelves: [] },
-  9:  { title: "Section 9",  tag: "Singles + Mixed", tagColor: "orange", shelves: [] },
-  10: { title: "Section 10", tag: "Mixed",       tagColor: "orange", shelves: [] },
+  2:  { title: "Section 2",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
+  3:  { title: "Section 3",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
+  4:  { title: "Section 4",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
+  5:  { title: "Section 5",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
+  6:  { title: "Section 6",  tag: "Singles",        tagColor: "red",    shelves: [] },
+  7:  { title: "Section 7",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
+  8:  { title: "Section 8",  tag: "Coming Soon",    tagColor: "gray",   shelves: [] },
+  9:  { title: "Section 9",  tag: "Singles + Mixed",tagColor: "orange", shelves: [] },
+  10: { title: "Section 10", tag: "Mixed",          tagColor: "orange", shelves: [] },
 };
 
 let current = 1;
@@ -327,8 +316,8 @@ function buildTabs() {
   for (let i = 1; i <= 10; i++) {
     const s = sections[i];
     let badge = '';
-    if (s.tagColor === 'red')    badge = `<span class="tab-badge red">S</span>`;
-    if (s.tagColor === 'orange') badge = `<span class="tab-badge orange">M</span>`;
+    if (s.tagColor === 'red')    badge = `<span class="badge red">S</span>`;
+    if (s.tagColor === 'orange') badge = `<span class="badge orange">M</span>`;
     const btn = document.createElement('button');
     btn.className = 'tab' + (i === 1 ? ' active' : '');
     btn.id = `tab-${i}`;
@@ -338,64 +327,98 @@ function buildTabs() {
   }
 }
 
-function renderShelves(shelves) {
-  const container = document.getElementById('shelves-container');
+function openModal(product, shelfName, slotNum) {
+  if (product.type === 'empty') return;
+  document.getElementById('modal-name').textContent  = product.name;
+  document.getElementById('modal-size').textContent  = product.size || '';
+  document.getElementById('modal-shelf').textContent = `📍 ${shelfName}`;
+  document.getElementById('modal-slot').textContent  = `Slot ${slotNum} (left to right)`;
+
+  const typeEl = document.getElementById('modal-type');
+  typeEl.textContent = TYPE_LABEL[product.type] || product.type;
+  typeEl.style.background = TYPE_COLOR[product.type] || '#333';
+  typeEl.style.color = product.type === 'seltzer' ? '#111' : '#fff';
+
+  const img = document.getElementById('modal-img');
+  img.src   = (product.imgKey && IMAGES[product.imgKey]) || FALLBACK;
+  img.onerror = () => { img.src = FALLBACK; };
+
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+  }
+}
+
+function renderCooler(shelves) {
+  const wrap = document.getElementById('cooler-wrap');
 
   if (!shelves || shelves.length === 0) {
-    container.innerHTML = `<div class="empty-state">
+    wrap.innerHTML = `<div class="empty-state">
       <div class="icon">🍺</div>
       <p>This section hasn't been filled in yet.<br>Tell Bushi what goes here!</p>
     </div>`;
     return;
   }
 
-  container.innerHTML = shelves.map((shelf, si) => {
-    // Fill empty slots up to shelf.slots count
+  let html = `<div class="cooler-box">
+    <div class="cooler-frost"></div>
+    <div class="cooler-label">❄ COOLER — Left to Right per shelf</div>`;
+
+  shelves.forEach((shelf, si) => {
     const products = [...shelf.products];
     if (shelf.slots) {
       while (products.length < shelf.slots) {
-        products.push({ name: "Empty", detail: "—", type: "empty" });
+        products.push({ name: "Empty", size: "—", type: "empty", imgKey: null });
       }
     }
 
-    const rows = products.map((p, idx) => {
-      const color = TYPE_COLOR[p.type] || '#888';
-      const isEmpty = p.type === 'empty';
-      return `
-        <div class="product-row ${isEmpty ? 'empty-row' : ''}">
-          <div class="slot-num">${idx + 1}</div>
-          <div class="product-info">
-            <div class="product-name">${p.name}</div>
-            ${p.detail && p.detail !== '—' ? `<div class="product-detail">${p.detail}</div>` : ''}
-          </div>
-          <div class="product-dot" style="background:${color}${isEmpty ? '; border:1px dashed #555' : ''}"></div>
-        </div>`;
-    }).join('');
+    html += `<div class="shelf">
+      <div class="shelf-meta">
+        <span class="shelf-name">${shelf.name}</span>
+        <span class="shelf-direction"><span> · </span></span>
+      </div>
+      <div class="products">`;
 
-    return `
-      <div class="shelf">
-        <div class="shelf-header">
-          <span class="shelf-name">${shelf.name}</span>
-          ${shelf.slots ? `<span class="shelf-slots">${shelf.slots} slots</span>` : ''}
-        </div>
-        ${rows}
-      </div>`;
-  }).join('');
+    products.forEach((p, idx) => {
+      const color  = TYPE_COLOR[p.type] || '#888';
+      const isEmpty = p.type === 'empty';
+      const imgSrc  = (p.imgKey && IMAGES[p.imgKey]) || '';
+
+      html += `
+        <div class="product-card" onclick="openModal(${JSON.stringify(p).replace(/"/g,"'")}, '${shelf.name}', ${idx+1})">
+          <div class="slot-num-top">${idx + 1}</div>
+          <div class="can-wrap ${isEmpty ? 'empty-slot' : ''}">
+            ${isEmpty
+              ? `<span class="empty-icon">—</span>`
+              : `<img src="${imgSrc}" alt="${p.name}" onerror="this.style.display='none'">`
+            }
+            ${!isEmpty ? `<div class="type-dot" style="background:${color}"></div>` : ''}
+          </div>
+          <div class="product-label">${isEmpty ? '' : p.name}</div>
+          <div class="size-label">${isEmpty ? '' : (p.size || '')}</div>
+        </div>`;
+    });
+
+    html += `</div><div class="shelf-rail"></div></div>`;
+  });
+
+  html += `</div>`;
+  wrap.innerHTML = html;
 }
 
 function showSection(num) {
   document.getElementById(`tab-${current}`).classList.remove('active');
   document.getElementById(`tab-${num}`).classList.add('active');
   current = num;
-
   const s = sections[num];
   document.getElementById('section-title').textContent = s.title;
-
   const tag = document.getElementById('section-tag');
   tag.textContent = s.tag;
-  tag.className = `section-tag ${s.tagColor}`;
-
-  renderShelves(s.shelves);
+  tag.className = `sec-tag ${s.tagColor}`;
+  renderCooler(s.shelves);
   window.scrollTo(0, 0);
 }
 
